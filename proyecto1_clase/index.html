@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tienda</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/noty.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/noty.min.js" type="text/javascript"></script>
+        <script src="js/app.js" type="text/javascript"></script>
+    </head>
+    <body onload="cargarProductos();cargarCarrito();">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <h2>Productos disponibles</h2>
+                    <div id="lista-productos"></div>
+                </div>
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-header">
+                            Productos
+                        </div>
+                        <div class="card-body">
+                            <form onsubmit="return buscar_producto()">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" id="nombre" class="form-control">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
+                                <div class="form-group">
+                                    <label>Codigo</label>
+                                    <input type="text" id="codigo" class="form-control">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <h2>Carrito</h2>
+                    <div id="lista-carrito">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
