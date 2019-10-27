@@ -76,7 +76,7 @@ function imprimir_carrito(carrito) {
     var carrito_html = '<ul>';
     for (var i = 0; i < carrito.length; i++) {
         var producto_id = carrito[i].producto_id;
-        var indice = compararProductosCarrito(lista_productos, producto_id);
+        var indice = compararProductosCarrito(producto_id);
         carrito_html += '<li>';
         carrito_html += lista_productos[indice].nombre;
         carrito_html += ' $' + lista_productos[indice].precio;
@@ -88,8 +88,10 @@ function imprimir_carrito(carrito) {
 
 function buscar_producto() {
     var input_codigo = document.getElementById('codigo');
+    var input_nombre = document.getElementById('nombre');
     var codigo = input_codigo.value;
-    var indice = buscar_codigo_en_lista(lista_productos, codigo);
+    var nombre = input_nombre.value;
+    var indice = buscar_codigo_en_lista(lista_productos, codigo, nombre);
     if (indice >= 0) {
         imprimir_producto(indice);
     } else {
@@ -97,19 +99,6 @@ function buscar_producto() {
     }
     return false;
 }
-
-var nombres = [];
-function filterItems(query) {
-    for (var i = 0; i < lista_productos.length; i++) {
-        nombres.push(lista_productos[i].nombre);
-    }
-    return nombres.filter(function (el) {
-        return el.toLowerCase().indexOf(query.toLowerCase()) > -1;
-    })
-}
-console.log(nombres);
-console.log(filterItems('le'));
-
 
 function imprimir_producto(i) {
     var producto_div = document.getElementById('lista-productos');
@@ -127,7 +116,7 @@ function imprimir_producto(i) {
     producto_div.innerHTML = producto_html;
 }
 
-function compararProductosCarrito(lista_productos, producto_id) {
+function compararProductosCarrito(producto_id) {
     for (var i = 0; i < lista_productos.length; i++) {
         if (lista_productos[i].id == producto_id) {
             return i;
@@ -136,9 +125,12 @@ function compararProductosCarrito(lista_productos, producto_id) {
     return -1;
 }
 
-function buscar_codigo_en_lista(lista_productos, codigo) {
+function buscar_codigo_en_lista(lista_productos, codigo, nombre) {
     for (var i = 0; i < lista_productos.length; i++) {
         if (lista_productos[i].codigo == codigo) {
+            return i;
+        }
+        if (lista_productos[i].nombre == nombre) {
             return i;
         }
     }
